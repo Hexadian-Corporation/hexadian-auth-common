@@ -1,17 +1,19 @@
-# Python
 __pycache__/
 *.py[cod]
 *$py.class
 *.egg-info/
-*.egg
 dist/
 build/
 .eggs/
-
-# Virtual environments
+*.egg
 .venv/
-venv/
-env/
+.env
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
 
 # IDE
 .idea/
@@ -19,12 +21,10 @@ env/
 *.swp
 *.swo
 
-# Testing / Coverage
-.coverage
-htmlcov/
-.pytest_cache/
-coverage.xml
-
 # OS
 .DS_Store
 Thumbs.db
+
+# VS Code Copilot local instruction files (only track copilot.instructions.md)
+.github/instructions/*
+!.github/instructions/copilot.instructions.md
