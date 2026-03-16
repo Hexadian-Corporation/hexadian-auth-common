@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import pytest
+
 from hexadian_auth_common.context import UserContext
 
 
@@ -44,7 +46,5 @@ class TestUserContext:
 
     def test_frozen(self) -> None:
         ctx = UserContext(user_id="u1", username="alice")
-        import pytest
-
         with pytest.raises(AttributeError):
             ctx.user_id = "u2"  # type: ignore[misc]
