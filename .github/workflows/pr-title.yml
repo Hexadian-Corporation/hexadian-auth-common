@@ -21,6 +21,6 @@ jobs:
                 `Expected: "<type>(<scope>): description"\n` +
                 `Example: "feat(auth-common): add JWT validation"\n` +
                 `Allowed types: chore, fix, ci, docs, feat, refactor, test, build, perf, style, revert\n` +
-                `Scope: auth-common`
+                `Common scopes: contracts, ships, maps, graphs, routes, auth, auth-common, frontend, backoffice, main, commodities`
               );
             }
