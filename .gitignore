@@ -13,6 +13,17 @@ build/
 .mypy_cache/
 .coverage
 coverage.xml
+htmlcov/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
 
 # VS Code Copilot local instruction files (only track copilot.instructions.md)
 .github/instructions/*
