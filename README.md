@@ -2,6 +2,13 @@
 
 Shared Python library for JWT validation, FastAPI auth dependencies, and user context for **H³ – Hexadian Hauling Helper** services.
 
+## Related Repositories
+
+| Repo | Purpose |
+|------|---------|
+| [`hexadian-auth-service`](https://github.com/Hexadian-Corporation/hexadian-auth-service) | Centralized identity platform — issues the JWTs this library validates |
+| [`hexadian-auth-common-php`](https://github.com/Hexadian-Corporation/hexadian-auth-common-php) | PHP counterpart — same JWT contract, same `UserContext` fields. For PHP consumers. |
+
 ## Stack
 
 - Python 3.11+
