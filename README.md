@@ -2,6 +2,10 @@
 
 Shared Python library for JWT validation, FastAPI auth dependencies, and user context for **H³ – Hexadian Hauling Helper** services.
 
+## JWT Contract
+
+This repository hosts [`JWT_CONTRACT.md`](JWT_CONTRACT.md) — the **single source of truth** for the JWT token structure shared across all Hexadian auth-common packages (Python, PHP). It defines the claims schema, `UserContext` field mapping, validation rules, and error behavior that every conforming implementation must follow.
+
 ## Related Repositories
 
 | Repo | Purpose |
