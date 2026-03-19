@@ -65,6 +65,7 @@ jobs:
 
               let desc = job.name;
               let fix = '';
+              let summary = '';
               if (job.name.includes('Lint')) {
                 desc = 'Lint & Format (ruff check + ruff format)';
                 fix = [
@@ -72,6 +73,12 @@ jobs:
                   '- Run `uv run ruff format .` to fix formatting',
                   '- Common issues: unused imports, missing type annotations, line length',
                 ].join('\n');
+                const errMatch = clean.match(/Found (\d+) error/);
+                const fmtMatch = clean.match(/(\d+) files? would be reformatted/);
+                const parts = [];
+                if (errMatch) parts.push(`${errMatch[1]} lint errors`);
+                if (fmtMatch) parts.push(`${fmtMatch[1]} files need reformatting`);
+                if (parts.length) summary = parts.join(', ');
               } else if (job.name.includes('Tests') || job.name.includes('Coverage')) {
                 desc = 'Tests & Coverage (pytest + diff-cover \u2265 90%)';
                 fix = [
@@ -79,9 +86,22 @@ jobs:
                   '- If diff-cover failed, add tests for uncovered changed lines',
                   '- Check that mocks and fixtures match current code',
                 ].join('\n');
+                const failMatch = clean.match(/(\d+) failed/);
+                const passMatch = clean.match(/(\d+) passed/);
+                const covMatch = clean.match(/Diff Coverage: (\d+(?:\.\d+)?)%/);
+                const failCov = clean.match(/Failure: (\d+(?:\.\d+)?)% is below (\d+)%/);
+                const parts = [];
+                if (failMatch) {
+                  const p = passMatch ? ` (${passMatch[1]} passed)` : '';
+                  parts.push(`${failMatch[1]} tests failed${p}`);
+                }
+                if (failCov) parts.push(`diff-cover: ${failCov[1]}% (required \u2265${failCov[2]}%)`);
+                else if (covMatch) parts.push(`diff-cover: ${covMatch[1]}%`);
+                if (parts.length) summary = parts.join(' \u00b7 ');
               }
 
               report += `### \u274c ${desc}\n\n`;
+              if (summary) report += `> **Cause:** ${summary}\n\n`;
               if (fix) report += `**Suggested fixes:**\n${fix}\n\n`;
               report += `<details><summary>Last 60 lines of log output</summary>\n\n\`\`\`\n${tail}\n\`\`\`\n\n</details>\n\n`;
             }
