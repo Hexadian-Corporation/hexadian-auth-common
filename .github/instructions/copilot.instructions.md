@@ -18,8 +18,7 @@ This package is a **shared Python library** for JWT validation and FastAPI auth 
 
 | Repo | Purpose |
 |------|---------|
-| [`hexadian-auth-service`](https://github.com/Hexadian-Corporation/hexadian-auth-service) | Centralized identity platform — issues the JWTs this library validates. Token architecture, RBAC, auth code flow. |
-
+| [`hexadian-auth-service`](https://github.com/Hexadian-Corporation/hexadian-auth-service) | Centralized identity platform — issues the JWTs this library validates. Token architecture, RBAC, auth code flow. || [`hexadian-auth-client`](https://github.com/Hexadian-Corporation/hexadian-auth-client) | TypeScript auth client SDK (npm monorepo). Frontend counterpart of this library. `@hexadian-corporation/auth-core` implements the same `UserContext` interface in TypeScript. Published to GitHub Packages. |
 ## Package Structure
 
 ```
