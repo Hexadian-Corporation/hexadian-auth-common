@@ -29,6 +29,9 @@ uv add hexadian-auth-common @ git+https://github.com/Hexadian-Corporation/hexadi
 
 # With FastAPI extras (includes auth dependencies & exception handlers)
 uv add "hexadian-auth-common[fastapi] @ git+https://github.com/Hexadian-Corporation/hexadian-auth-common.git"
+
+# With token introspection extras (includes httpx HTTP client)
+uv add "hexadian-auth-common[introspection] @ git+https://github.com/Hexadian-Corporation/hexadian-auth-common.git"
 ```
 
 ## Package Exports
@@ -41,6 +44,8 @@ uv add "hexadian-auth-common[fastapi] @ git+https://github.com/Hexadian-Corporat
 | `UserContext` | dataclass | Authenticated user context built from JWT claims |
 | `AuthenticationError` | exception | Raised when authentication fails (invalid / expired token) |
 | `InsufficientPermissionsError` | exception | Raised when the user lacks required permissions |
+| `TokenIntrospector` | class | HTTP client for the auth service token introspection endpoint |
+| `IntrospectionResult` | dataclass | Typed result of a token introspection call |
 
 ### FastAPI (`hexadian_auth_common.fastapi`)
 
@@ -110,6 +115,20 @@ async def editor(user=Depends(require_any_permission("editor:write", "admin:writ
     return {"ok": True}
 ```
 
+### Introspect a token against the auth service
+
+```python
+from hexadian_auth_common import TokenIntrospector
+
+introspector = TokenIntrospector("https://auth.example.com")
+result = introspector.introspect(token)
+
+if result.active and result.is_user_active:
+    print(f"Authenticated: {result.username}")
+else:
+    print(f"Token inactive: {result.reason}")
+```
+
 ## Configuration
 
 | Parameter | Default | Description |
@@ -128,7 +147,7 @@ Both `decode_access_token` and `JWTAuthDependency` accept `secret` and `algorith
 ### Setup
 
 ```bash
-uv sync --extra dev --extra fastapi
+uv sync --extra dev --extra fastapi --extra introspection
 ```
 
 ### Test
