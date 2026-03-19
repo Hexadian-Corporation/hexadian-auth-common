@@ -2,7 +2,7 @@
 
 > **Single source of truth** for the JWT token structure used across all Hexadian auth-common packages.
 >
-> Both [`hexadian-auth-common`](https://github.com/Hexadian-Corporation/hexadian-auth-common) (Python) and [`hexadian-auth-common-php`](https://github.com/Hexadian-Corporation/hexadian-auth-common-php) conform to this contract.
+> [`hexadian-auth-common`](https://github.com/Hexadian-Corporation/hexadian-auth-common) (Python) conforms to this contract.
 
 ---
 

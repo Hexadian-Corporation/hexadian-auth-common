@@ -19,9 +19,6 @@ This package is a **shared Python library** for JWT validation and FastAPI auth 
 | Repo | Purpose |
 |------|---------|
 | [`hexadian-auth-service`](https://github.com/Hexadian-Corporation/hexadian-auth-service) | Centralized identity platform — issues the JWTs this library validates. Token architecture, RBAC, auth code flow. |
-| [`hexadian-auth-common-php`](https://github.com/Hexadian-Corporation/hexadian-auth-common-php) | PHP counterpart of this package — same JWT contract, same `UserContext` field mapping. For PHP consumers. |
-
-Both auth-common packages conform to `JWT_CONTRACT.md` (hosted in this repo) and must stay in sync.
 
 ## Package Structure
 
